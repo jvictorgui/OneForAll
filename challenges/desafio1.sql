@@ -6,8 +6,6 @@ artist_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
 artist_name VARCHAR(100) NOT NULL
 ) engine = InnoDB; 
 
-
-
 CREATE TABLE subscription_plans (
 subscription_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
 subscription_plan VARCHAR(100) NOT NULL,
@@ -39,22 +37,42 @@ CREATE TABLE songs (
   FOREIGN KEY (albun_id) REFERENCES albuns(albun_id)
 ) ENGINE = InnoDB;
 
-CREATE TABLE following_relationships (
-  user_id INT UNSIGNED NOT NULL,
-  artist_id INT UNSIGNED,
-  FOREIGN KEY (user_id) REFERENCES user_data(user_id),
-  FOREIGN KEY (artist_id) REFERENCES artists(artist_id),
-  PRIMARY KEY (artist_id, user_id)
-) ENGINE = InnoDB;
+-- CREATE TABLE following_relationships (
+--   user_id INT UNSIGNED NOT NULL,
+--   artist_id INT UNSIGNED  NOT NULL,
+--   FOREIGN KEY (user_id) REFERENCES user_data(user_id),
+--   FOREIGN KEY (artist_id) REFERENCES artists(artist_id),
+--   PRIMARY KEY (artist_id, user_id)
+-- ) ENGINE = InnoDB;
+
+-- CREATE TABLE songs_playback (
+--   user_id INT UNSIGNED NOT NULL,
+--   song_id INT UNSIGNED NOT NULL,
+--   playback_date DATETIME NOT NULL,
+--   FOREIGN KEY (user_id) REFERENCES user_data(user_id),
+--   FOREIGN KEY (song_id) REFERENCES songs(song_id),
+--   PRIMARY KEY(user_id, song_id)
+-- ) ENGINE = InnoDB;
 
 CREATE TABLE songs_playback (
   user_id INT UNSIGNED NOT NULL,
   song_id INT UNSIGNED NOT NULL,
   playback_date DATETIME NOT NULL,
+  CONSTRAINT PRIMARY KEY (user_id, song_id, playback_date), 
   FOREIGN KEY (user_id) REFERENCES user_data(user_id),
-  FOREIGN KEY (song_id) REFERENCES songs(song_id),
-  PRIMARY KEY(user_id, song_id)
+  FOREIGN KEY (song_id) REFERENCES songs(song_id)
+  
 ) ENGINE = InnoDB;
+
+CREATE TABLE following_relationships (
+  user_id INT UNSIGNED NOT NULL,
+  artist_id INT UNSIGNED  NOT NULL,
+  CONSTRAINT PRIMARY KEY (user_id, artist_id), 
+  FOREIGN KEY (user_id) REFERENCES user_data(user_id),
+  FOREIGN KEY (artist_id) REFERENCES artists(artist_id)
+) ENGINE = InnoDB;
+
+
 
 -- Dados dos artistas
 INSERT INTO artists (artist_id, artist_name) VALUES ('1', 'Beyoncé');
@@ -112,7 +130,7 @@ VALUES
 	(5, 5),
 	(5, 6),
 	(6, 6),
-	(6, 2),
+	(6, 1),
 	(7, 6),
 	(9, 3),
 	(10, 2);
@@ -133,3 +151,4 @@ INSERT INTO songs_playback (user_id, song_id, playback_date) VALUES ('7', '4', '
 INSERT INTO songs_playback (user_id, song_id, playback_date) VALUES ('8', '4', '2012-03-17 14:56:41');
 INSERT INTO songs_playback (user_id, song_id, playback_date) VALUES ('9', '9', '2022-02-24 21:14:22');
 INSERT INTO songs_playback (user_id, song_id, playback_date) VALUES ('10', '3', '2015-12-13 08:30:22');
+
