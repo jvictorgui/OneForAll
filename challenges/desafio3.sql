@@ -4,9 +4,9 @@ SELECT
   ROUND(SUM(s.song_duration) / 60, 2) AS total_minutos
 FROM
   user_data ud
-LEFT JOIN
+INNER JOIN
   songs_playback sp ON ud.user_id = sp.user_id
-LEFT JOIN
+INNER JOIN
   songs s ON sp.song_id = s.song_id
 GROUP BY
   ud.user_name
