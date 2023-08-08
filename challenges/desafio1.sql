@@ -37,23 +37,6 @@ CREATE TABLE songs (
   FOREIGN KEY (albun_id) REFERENCES albuns(albun_id)
 ) ENGINE = InnoDB;
 
--- CREATE TABLE following_relationships (
---   user_id INT UNSIGNED NOT NULL,
---   artist_id INT UNSIGNED  NOT NULL,
---   FOREIGN KEY (user_id) REFERENCES user_data(user_id),
---   FOREIGN KEY (artist_id) REFERENCES artists(artist_id),
---   PRIMARY KEY (artist_id, user_id)
--- ) ENGINE = InnoDB;
-
--- CREATE TABLE songs_playback (
---   user_id INT UNSIGNED NOT NULL,
---   song_id INT UNSIGNED NOT NULL,
---   playback_date DATETIME NOT NULL,
---   FOREIGN KEY (user_id) REFERENCES user_data(user_id),
---   FOREIGN KEY (song_id) REFERENCES songs(song_id),
---   PRIMARY KEY(user_id, song_id)
--- ) ENGINE = InnoDB;
-
 CREATE TABLE songs_playback (
   user_id INT  NOT NULL,
   song_id INT  NOT NULL,
@@ -110,17 +93,6 @@ INSERT INTO albuns (albun_id, albun_name, release_year, artist_id) VALUES (6, 'Q
 INSERT INTO albuns (albun_id, albun_name, release_year, artist_id) VALUES (7, 'Somewhere Far Beyond', 2007, 5);
 INSERT INTO albuns (albun_id, albun_name, release_year, artist_id) VALUES (8, 'I Put A Spell On You', 2012, 6);
 
--- -- Dados das musicas
--- INSERT INTO songs (song_id, song_name, song_duration, albun_id) VALUES ('1', "BREAK MY SOUL", '279', '1');
--- INSERT INTO songs (song_id, song_name, song_duration, albun_id) VALUES ('2', "VIRGO'S GROOVE", '369', '1');
--- INSERT INTO songs (song_id, song_name, song_duration, albun_id) VALUES ('3', "ALIEN SUPERSTAR", '116', '1');
--- INSERT INTO songs (song_id, song_name, song_duration, albun_id) VALUES ('4', "Don't Stop Me Now", '203', '2');
--- INSERT INTO songs (song_id, song_name, song_duration, albun_id) VALUES ('5', "Under Pressure", '152', '3');
--- INSERT INTO songs (song_id, song_name, song_duration, albun_id) VALUES ('6', "Como Nossos Pais", '105', '4');
--- INSERT INTO songs (song_id, song_name, song_duration, albun_id) VALUES ('7', "O Medo de Amar é o Medo de Ser Livre", '207', '5');
--- INSERT INTO songs (song_id, song_name, song_duration, albun_id) VALUES ('8', "Samba em Paris", '267', '6');
--- INSERT INTO songs (song_id, song_name, song_duration, albun_id) VALUES ('9', "The Bard's Song", '244', '7');
--- INSERT INTO songs (song_id, song_name, song_duration, albun_id) VALUES ('10', "Feeling Good", '100', '8');
 -- Dados das musicas
 INSERT INTO songs (song_id, song_name, song_duration, albun_id) VALUES (1, 'BREAK MY SOUL', 279, 1);
 INSERT INTO songs (song_id, song_name, song_duration, albun_id) VALUES (2, "VIRGO'S GROOVE", 369, 1);
